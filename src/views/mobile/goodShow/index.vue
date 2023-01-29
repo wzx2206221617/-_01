@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import headerVue from '@/components/mobile/header.vue';
 import { ref } from 'vue'
 import type { TabPaneName } from 'element-plus'
+import type { ITable } from './interface';
+import HeaderVue from '@/components/mobile/header.vue';
 import { DCaret } from '@element-plus/icons-vue'
 const activeName = ref('1')
-const tabberList = ref<any>([])
+const tabList = ref<ITable>([])
 const activeData = ref('')
 const goodNum = ref(500)
-
 //事件
 const handleClick = (name: TabPaneName) => {
     console.log(name);
-    let value = tabberList.value.filter((v: any) => v.name == name)
+    let value = tabList.value.filter((v) => v.name === name)
     console.log(value[0].label)
     activeData.value = value[0].label
 }
-const getList = () => {
-    tabberList.value = [
+const getList = (): void => {
+    tabList.value = [
         { label: "休闲鞋", name: "1" },
         { label: "运动鞋", name: "2" },
         { label: "长筒鞋", name: "3" },
@@ -25,15 +25,15 @@ const getList = () => {
     ]
 }
 getList()
-console.log(tabberList.value[0].label);
+console.log(tabList.value[0].label);
 
 </script>
 <template>
     <div>
-        <headerVue />
+        <HeaderVue />
         <div class="jabberers">
             <el-tabs v-model="activeName" class="demo-tabs" @tab-change="handleClick" :stretch=true>
-                <el-tab-pane :label="item.label" :name="item.name" :key="index" v-for="(item, index) in tabberList">
+                <el-tab-pane :label="item.label" :name="item.name" :key="index" v-for="(item, index) in tabList">
                     <div class="screenCond">
                         <p>{{ goodNum }}个结果</p>
                         <el-button round>
@@ -53,7 +53,7 @@ console.log(tabberList.value[0].label);
     </div>
 </template>
 <style lang="less" scoped>
-/deep/.jabberers {
+:deep(.jabberers) {
     margin-top: 20px;
 
     .el-tabs__nav-wrap.is-scrollable {
@@ -83,7 +83,8 @@ console.log(tabberList.value[0].label);
     .el-tabs__active-bar {
         background-color: var(--el-color-black)
     }
-    .screenCond{
+
+    .screenCond {
         display: flex;
         align-items: center;
         justify-content: space-between;
