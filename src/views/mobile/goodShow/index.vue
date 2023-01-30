@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import type { TabPaneName } from 'element-plus'
-import type { ITable } from './interface';
+import type { ITable, IGoodItem, ITableItem } from './interface';
 import HeaderVue from '@/components/mobile/header.vue';
 import { DCaret } from '@element-plus/icons-vue'
+import xiezi from '@/assets/image/xiezi.jpg'
+import kuzi from '@/assets/image/kuzi.jpg'
 const activeName = ref('1')
 const tabList = ref<ITable>([])
+const tableList = ref<IGoodItem>([])
 const activeData = ref('')
 const goodNum = ref(500)
 //事件
@@ -24,9 +27,19 @@ const getList = (): void => {
         { label: "拖鞋", name: "5" },
     ]
 }
-getList()
-console.log(tabList.value[0].label);
+const getGoodItem = (): void => {
+    tableList.value = [
+        { id: 1, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 1, reality_price: 500, discounts_price: 199 },
+        { id: 2, img: kuzi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 12, reality_price: 500, discounts_price: 199 },
+        { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
 
+    ]
+}
+const changeGoodItem = (item: ITableItem): void => {
+    console.log(item);
+}
+getList()
+getGoodItem()
 </script>
 <template>
     <div>
@@ -44,8 +57,22 @@ console.log(tabList.value[0].label);
                         </el-button>
                     </div>
                     {{ activeData }}
-                    <div class="">
-                        <div>12321</div>
+                    <div class="product">
+                        <div class="productBox" :key="index" v-for="(item, index) in tableList"
+                            @click="changeGoodItem(item)">
+                            <el-image class="productImg" :src="item.img" fit="cover" />
+                            <div class="productMain">
+                                <div class="productName">{{ item.good_name }}</div>
+                                <div :class="['cardColor']">{{ item.title }}</div>
+                                <div :class="['cardColor']">{{ item.variety }}种颜色</div>
+                                <div class="productPrice">
+                                    <p class="PriceD">¥{{
+                                        item.discounts_price ? item.discounts_price : item.reality_price
+                                    }}</p>
+                                    <p class="PriceR">{{ item.discounts_price ? `原价:${item.reality_price}` : '' }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </el-tab-pane>
             </el-tabs>
@@ -89,6 +116,52 @@ console.log(tabList.value[0].label);
         align-items: center;
         justify-content: space-between;
         padding: 0 10px;
+    }
+}
+
+.product {
+    margin-top: 20px;
+    display: grid;
+    /* 宽度平均分成4份 */
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+
+    .productBox {
+        .productImg {
+            width: 100%;
+            height: 365px;
+        }
+    }
+
+    .productMain {
+        padding: 10px;
+
+        .cardColor {
+            color: #757575;
+        }
+
+        .productName {
+            color: #111111;
+            font-weight: 500;
+        }
+
+        .productPrice {
+            display: flex;
+            align-items: flex-end;
+
+            .PriceD {
+                font-size: 20px;
+                font-weight: 500;
+
+            }
+
+            .PriceR {
+                margin-left: 6px;
+                color: #757575;
+                text-decoration: line-through;
+            }
+        }
     }
 }
 </style>
