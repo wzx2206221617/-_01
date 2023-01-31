@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import type { TabPaneName } from 'element-plus'
 import type { ITable, IGoodItem, ITableItem } from './interface';
 import HeaderVue from '@/components/mobile/header.vue';
@@ -11,6 +12,7 @@ const tabList = ref<ITable>([])
 const tableList = ref<IGoodItem>([])
 const activeData = ref('')
 const goodNum = ref(500)
+const router = useRouter()
 //事件
 const handleClick = (name: TabPaneName) => {
     console.log(name);
@@ -36,7 +38,10 @@ const getGoodItem = (): void => {
     ]
 }
 const changeGoodItem = (item: ITableItem): void => {
-    console.log(item);
+    router.push({
+        name: 'details',
+        query:{...item}
+    })
 }
 getList()
 getGoodItem()
