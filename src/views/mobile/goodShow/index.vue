@@ -13,6 +13,7 @@ const tableList = ref<IGoodItem>([])
 const activeData = ref('')
 const goodNum = ref(500)
 const router = useRouter()
+const drawer = ref<boolean>(false)
 //事件
 const handleClick = (name: TabPaneName) => {
     console.log(name);
@@ -40,8 +41,14 @@ const getGoodItem = (): void => {
 const changeGoodItem = (item: ITableItem): void => {
     router.push({
         name: 'details',
-        query:{...item}
+        query: { ...item }
     })
+}
+const openDrawer = () => {
+    drawer.value = true
+}
+const handleClose = () => {
+    drawer.value = false
 }
 getList()
 getGoodItem()
@@ -54,7 +61,7 @@ getGoodItem()
                 <el-tab-pane :label="item.label" :name="item.name" :key="index" v-for="(item, index) in tabList">
                     <div class="screenCond">
                         <p>{{ goodNum }}个结果</p>
-                        <el-button round>
+                        <el-button round @click="openDrawer()">
                             筛选条件
                             <el-icon class="el-icon--right">
                                 <DCaret />
@@ -82,6 +89,11 @@ getGoodItem()
                 </el-tab-pane>
             </el-tabs>
         </div>
+        <el-drawer 
+        title="筛选条件"
+        v-model="drawer" size="100%" direction="btt" :before-close="handleClose">
+            <span>Hi there!</span>
+        </el-drawer>
     </div>
 </template>
 <style lang="less" scoped>
