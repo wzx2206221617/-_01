@@ -11,7 +11,7 @@ import { ref, watch, reactive } from "vue";
 </template>
 <style lang="less" scoped>
 .wrapper {
-  height: 100%;
+  height: 100vh;
   background: #f5f5f5;
 }
 </style>

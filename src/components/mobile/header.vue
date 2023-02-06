@@ -33,7 +33,7 @@ const handleClose=()=>{
 <style lang="less" scoped>
 .navbar {
     width: 100%;
-    height: 70px;
+    height: 5vh;
     background: #FFFFFF;
     display: flex;
     align-items: center;

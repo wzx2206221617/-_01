@@ -48,46 +48,52 @@ console.log(route.query);
 getInfo()
 </script>
 <template>
-    <div>
+    <div class="common-layout">
         <HeaderVue />
-        <div class="headBox">
-            <div class="headline">Nike Waffle Debut</div>
-            <div class="headTitle">女子时尚华夫运动鞋</div>
-            <div class="headMony">¥599</div>
-        </div>
-        <div class="block text-center">
-            <el-carousel :autoplay="false" ref="carousel">
-                <el-carousel-item v-for="item in bannerList" :key="item.id" :name="'i' + item.id">
-                    <el-image class="productImg" :src="item.img" fit="fill" />
-                </el-carousel-item>
-            </el-carousel>
-        </div>
-        <div class="imageLi">
-            <div v-for="(item, index) in bannerList" :key="index" @click="changeImage(item.id)">
-                <el-image :class="[ActionImage === item.id ? 'showImgAction' : 'showImg']" :src="item.img" fit="fill" />
+        <el-scrollbar height="95vh">
+            <div class="headBox">
+                <div class="headline">Nike Waffle Debut</div>
+                <div class="headTitle">女子时尚华夫运动鞋</div>
+                <div class="headMony">¥599</div>
             </div>
-        </div>
-        <div>
-            <div class="transparent">
-                <p>选择尺码<span v-if="SizeNumber" style="margin-left: 10px;">库存:{{ SizeNumber }}</span></p>
-                <p>尺码表</p>
+            <div class="block text-center">
+                <el-carousel :autoplay="false" ref="carousel">
+                    <el-carousel-item v-for="item in bannerList" :key="item.id" :name="'i' + item.id">
+                        <el-image class="productImg" :src="item.img" fit="fill" />
+                    </el-carousel-item>
+                </el-carousel>
             </div>
-            <div class="hzulvp">
-                <div v-for="(item, index) in goodSize" :key="index">
-                    <div :class="[item.disabled ? 'disabledButGod' : goodSizeIndex === index ? 'activeButGod' : 'butGod']"
-                        @click="changeSizeItem(item, index)">{{
-    item.label
-                        }}</div>
+            <div class="imageLi">
+                <div v-for="(item, index) in bannerList" :key="index" @click="changeImage(item.id)">
+                    <el-image :class="[ActionImage === item.id ? 'showImgAction' : 'showImg']" :src="item.img"
+                        fit="fill" />
                 </div>
             </div>
-        </div>
-        <div class="titleName">产品介绍</div>
-        <div class="textMain">
-            穿上温暖多绒的 Jordan Essential Winter 男子加绒连帽衫，让你轻松应对冷天。刺绣 AIR JORDAN 字样，打造舒适穿着体验，又不失潮酷感。
-        </div>
+            <div>
+                <div class="transparent">
+                    <p>选择尺码<span v-if="SizeNumber" style="margin-left: 10px;">库存:{{ SizeNumber }}</span></p>
+                    <p>尺码表</p>
+                </div>
+                <div class="hzulvp">
+                    <div v-for="(item, index) in goodSize" :key="index">
+                        <div :class="[item.disabled ? 'disabledButGod' : goodSizeIndex === index ? 'activeButGod' : 'butGod']"
+                            @click="changeSizeItem(item, index)">{{
+    item.label
+                            }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="titleName">产品介绍</div>
+            <div class="textMain">
+                穿上温暖多绒的 Jordan Essential Winter 男子加绒连帽衫，让你轻松应对冷天。刺绣 AIR JORDAN 字样，打造舒适穿着体验，又不失潮酷感。
+            </div>
+        </el-scrollbar>
     </div>
 </template>
 <style lang="less" scoped>
+.common-layout {
+    height: 100%;
+}
 .headBox {
     padding: 40px;
 
@@ -103,9 +109,7 @@ getInfo()
 }
 
 .block {
-    border: 1px solid red;
     width: 100%;
-
     .productImg {
         width: 100%;
         height: 100%;
@@ -114,7 +118,6 @@ getInfo()
 }
 
 .imageLi {
-    border: 1px solid red;
     width: 100%;
     display: grid;
     padding: 10px 0;
@@ -187,11 +190,13 @@ getInfo()
 
 
 }
-.titleName{
+
+.titleName {
     font-size: 20px;
     font-weight: 500;
     padding: 20px;
 }
+
 .textMain {
     padding: 20px;
 }

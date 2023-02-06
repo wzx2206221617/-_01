@@ -35,6 +35,12 @@ const getGoodItem = (): void => {
         { id: 1, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 1, reality_price: 500, discounts_price: 199 },
         { id: 2, img: kuzi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 12, reality_price: 500, discounts_price: 199 },
         { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
+        { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
+        { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
+        { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
+        { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
+        { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
+        { id: 3, img: xiezi, good_name: 'Nike Solo Swoosh', title: "男子加绒套头连帽衫", variety: 31, reality_price: 500 },
 
     ]
 }
@@ -54,7 +60,7 @@ getList()
 getGoodItem()
 </script>
 <template>
-    <div>
+    <div class="common-layout">
         <HeaderVue />
         <div class="jabberers">
             <el-tabs v-model="activeName" class="demo-tabs" @tab-change="handleClick" :stretch=true>
@@ -68,38 +74,42 @@ getGoodItem()
                             </el-icon>
                         </el-button>
                     </div>
-                    {{ activeData }}
-                    <div class="product">
-                        <div class="productBox" :key="index" v-for="(item, index) in tableList"
-                            @click="changeGoodItem(item)">
-                            <el-image class="productImg" :src="item.img" fit="cover" />
-                            <div class="productMain">
-                                <div class="productName">{{ item.good_name }}</div>
-                                <div :class="['cardColor']">{{ item.title }}</div>
-                                <div :class="['cardColor']">{{ item.variety }}种颜色</div>
-                                <div class="productPrice">
-                                    <p class="PriceD">¥{{
-                                        item.discounts_price ? item.discounts_price : item.reality_price
-                                    }}</p>
-                                    <p class="PriceR">{{ item.discounts_price ? `原价:${item.reality_price}` : '' }}</p>
+                    <el-scrollbar height="83.5vh">
+                        <div class="product">
+                            <div class="productBox" :key="index" v-for="(item, index) in tableList"
+                                @click="changeGoodItem(item)">
+                                <el-image class="productImg" :src="item.img" fit="cover" />
+                                <div class="productMain">
+                                    <div class="productName">{{ item.good_name }}</div>
+                                    <div :class="['cardColor']">{{ item.title }}</div>
+                                    <div :class="['cardColor']">{{ item.variety }}种颜色</div>
+                                    <div class="productPrice">
+                                        <p class="PriceD">¥{{
+                                            item.discounts_price ? item.discounts_price : item.reality_price
+                                        }}</p>
+                                        <p class="PriceR">{{
+                                            item.discounts_price ? `原价:${item.reality_price}` : ''
+                                        }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </el-scrollbar>
                 </el-tab-pane>
             </el-tabs>
         </div>
-        <el-drawer 
-        title="筛选条件"
-        v-model="drawer" size="100%" direction="btt" :before-close="handleClose">
+        <el-drawer title="筛选条件" v-model="drawer" size="100%" direction="btt" :before-close="handleClose">
             <span>Hi there!</span>
         </el-drawer>
     </div>
 </template>
 <style lang="less" scoped>
+.common-layout {
+    height: 100%;
+}
 :deep(.jabberers) {
-    margin-top: 20px;
-
+    height: 95vh;
     .el-tabs__nav-wrap.is-scrollable {
         padding: 0 40px;
         box-sizing: border-box;

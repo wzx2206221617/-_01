@@ -17,7 +17,8 @@ const ISMOBILE = () => {
 }
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: ISMOBILE() ? routerM : routerPC,
+  // routes: ISMOBILE() ? routerM : routerPC,
+  routes: ISMOBILE() ? routerM : routerM,
 })
 
 export default router

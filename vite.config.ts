@@ -5,11 +5,11 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // server: {
-  //   // host: '192.168.2.6',
-  //   host: '192.168.2.38',
-  //   port: 3344
-  // },
+  server: {
+    host: '192.168.2.6',
+    // host: '192.168.2.38',
+    port: 3344
+  },
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
