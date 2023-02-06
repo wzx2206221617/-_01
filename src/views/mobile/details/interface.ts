@@ -15,3 +15,11 @@ export interface ITableItem {
 
 
 export type IGoodItem = ITableItem[]
+
+
+export interface IGoogSize{
+    label:string | number
+    value:number
+    num:number
+    disabled:boolean
+}

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
-import type { ITable, IGoodItem, ITableItem } from './interface';
+import type { ITable, IGoodItem, ITableItem, IGoogSize } from './interface';
 import HeaderVue from '@/components/mobile/header.vue';
 import xiezi from '@/assets/image/xiezi.jpg'
 import kuzi from '@/assets/image/kuzi.jpg'
@@ -13,7 +13,7 @@ const goodSizeIndex = ref<number>()
 const SizeNumber = ref<number>()
 
 const carousel = ref()
-const goodSize = ref([
+const goodSize = ref<IGoogSize[]>([
     { label: 39, value: 1, disabled: false, num: 10 },
     { label: 40, value: 2, disabled: true, num: 11 },
     { label: 41, value: 3, disabled: false, num: 21 },
@@ -39,7 +39,7 @@ const changeImage = (v: number) => {
         carousel.value.setActiveItem('i' + v)
     })
 }
-const changeSizeItem = (item: any, index: number) => {
+const changeSizeItem = (item: IGoogSize, index: number) => {
     console.log(item);
     goodSizeIndex.value = index
     SizeNumber.value = item.num
