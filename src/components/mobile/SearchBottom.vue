@@ -16,9 +16,10 @@ const goodsPrice = ref<ITable>([
   { name: "300-499元", label: "2" },
   { name: "500元以上", label: "4" },
 ]);
+const submit = () => {};
 </script>
 <template>
-  <div>
+  <div class="mainAll">
     <div class="BoxGroup">
       <div><h2>排序依据</h2></div>
       <div>
@@ -47,11 +48,27 @@ const goodsPrice = ref<ITable>([
         </el-checkbox-group>
       </div>
     </div>
+    <div class="bott" @click="submit">确认</div>
   </div>
 </template>
 <style lang="less" scoped>
 .childrenContainer {
-  border: 1px solid red;
+  // border: 1px solid red;
+  padding: 10px 0;
   width: 100%;
+}
+.mainAll {
+  position: relative;
+  height: 100%;
+  .bott {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: black;
+    color: #ffffff;
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+  }
 }
 </style>
