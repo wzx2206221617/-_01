@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, toRefs, defineEmits } from "vue";
 import type { IFromItem, ITable } from "../interface";
-const fromList = ref<IFromItem>({
-  goodType: "",
-  goodPrice: [],
-});
+const emit = defineEmits(["getCondition"]);
+const fromList = ref<IFromItem>({});
 const goodsRadio = ref<ITable>([
   { name: "精品推荐", label: "1" },
   { name: "最新", label: "2" },
@@ -16,7 +14,9 @@ const goodsPrice = ref<ITable>([
   { name: "300-499元", label: "2" },
   { name: "500元以上", label: "4" },
 ]);
-const submit = () => {};
+const submit = () => {
+  emit("getCondition", fromList.value);
+};
 </script>
 <template>
   <div class="mainAll">

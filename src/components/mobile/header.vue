@@ -4,6 +4,7 @@ import { Operation, Search } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const rightDrawer = ref<boolean>(false);
+const allColumn = ref([]);
 const openRightDrawer = () => {
   rightDrawer.value = true;
 };
@@ -13,6 +14,11 @@ const handleClose = () => {
 const goBack = () => {
   router.push({
     name: "goodShow",
+  });
+};
+const handleSearch = () => {
+  router.push({
+    name: "searchPage",
   });
 };
 </script>
@@ -26,12 +32,16 @@ const goBack = () => {
         @click="goBack()"
       />
       <div class="iconBut">
-        <Search class="iconImg" style="margin-right: 20px" />
+        <Search
+          class="iconImg"
+          style="margin-right: 20px"
+          @click="handleSearch()"
+        />
         <Operation class="iconImg" @click="openRightDrawer()" />
       </div>
     </div>
     <el-drawer v-model="rightDrawer" :before-close="handleClose" size="50%">
-      <span>Hi there!</span>
+      <div class="headline">1111111</div>
     </el-drawer>
   </div>
 </template>

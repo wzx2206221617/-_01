@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import type { TabPaneName } from "element-plus";
-import type { ITable, IGoodItem, ITableItem } from "./interface";
+import type { ITable, IGoodItem, ITableItem, IFromItem } from "./interface";
 import { DCaret } from "@element-plus/icons-vue";
 import xiezi from "@/assets/image/xiezi.jpg";
 import kuzi from "@/assets/image/kuzi.jpg";
@@ -121,6 +121,10 @@ const openDrawer = () => {
 const handleClose = () => {
   drawer.value = false;
 };
+const getCondition = (val: IFromItem) => {
+  console.log(val);
+  handleClose();
+};
 getList();
 getGoodItem();
 </script>
@@ -190,7 +194,7 @@ getGoodItem();
       direction="btt"
       :before-close="handleClose"
     >
-      <SearchBottom />
+      <SearchBottom @getCondition="getCondition" />
     </el-drawer>
   </div>
 </template>
