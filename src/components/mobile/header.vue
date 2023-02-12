@@ -41,7 +41,11 @@ const handleSearch = () => {
       </div>
     </div>
     <el-drawer v-model="rightDrawer" :before-close="handleClose" size="50%">
-      <div class="headline">1111111</div>
+      <div class="headline">
+        <div>主页</div>
+        <div>留言</div>
+        <div>关于我们</div>
+      </div>
     </el-drawer>
   </div>
 </template>
